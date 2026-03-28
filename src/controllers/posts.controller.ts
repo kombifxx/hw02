@@ -26,29 +26,30 @@ export const postsController = {
     const createdPost = postsRepo.create(newPost);
     res.status(201).send(createdPost);
   },
-  update(req: Request, res: Response) {
-    const id = req.params.id as string;
-    const data = req.body;
+    update(req: Request, res: Response) {
+        const id = req.params.id as string
+        const data = req.body
 
-    const post = postsRepo.findById(id);
+        const post = postsRepo.findById(id)
 
-    if (!post) {
-      return res.sendStatus(404);
-    }
-      const blog = blogsRepo.findById(data.blogId)
+        if (!post) {
+            return res.sendStatus(404)
+        }
 
-      if (!blog) {
-          return res.sendStatus(400)
-      }
+        const blog = blogsRepo.findById(data.blogId)
 
-    post.title = data.title;
-    post.shortDescription = data.shortDescription;
-    post.content = data.content;
-    post.blogId = data.blogId;
-      post.blogName = blog.name
+        if (!blog) {
+            return res.sendStatus(400)
+        }
 
-    return res.sendStatus(204);
-  },
+        post.title = data.title
+        post.shortDescription = data.shortDescription
+        post.content = data.content
+        post.blogId = data.blogId
+        post.blogName = blog.name
+
+        return res.sendStatus(204)
+    },
 
   getById(req: Request, res: Response) {
     const id = req.params.id as string;
