@@ -35,11 +35,17 @@ export const postsController = {
     if (!post) {
       return res.sendStatus(404);
     }
+      const blog = blogsRepo.findById(data.blogId)
+
+      if (!blog) {
+          return res.sendStatus(400)
+      }
 
     post.title = data.title;
     post.shortDescription = data.shortDescription;
     post.content = data.content;
     post.blogId = data.blogId;
+      post.blogName = blog.name
 
     return res.sendStatus(204);
   },

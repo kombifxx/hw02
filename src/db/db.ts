@@ -16,4 +16,5 @@ export type Post = {
   shortDescription: string;
   content: string;
   blogId: string;
+  blogName: string;
 };
