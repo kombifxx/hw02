@@ -21,7 +21,10 @@ export const postValidation = [
     .withMessage("WebsiteUrl should be a string")
     .isLength({ max: 1000 })
     .withMessage("Website should be less than 1000 characters"),
-]; //хз
+    body('blogId')
+        .exists().withMessage('blogId is required')
+        .isString().withMessage('blogId must be string')
+];
 export const idValidation = [
   param("id")
     .exists()

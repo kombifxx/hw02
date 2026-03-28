@@ -32,6 +32,5 @@ export const idValidation = [
     .withMessage("ID cannot be empty")
     .isString()
     .withMessage("ID should be a string")
-    .isNumeric()
     .withMessage("ID should be a number"),
 ];
