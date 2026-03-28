@@ -43,7 +43,7 @@ export const blogsController = {
         if (!blog) {
             return res.sendStatus(404)
         }
-        return res.sendStatus(200).send(blog)
+        return res.status(200).send(blog)
 
     },
     deleteById(req: Request, res: Response) {

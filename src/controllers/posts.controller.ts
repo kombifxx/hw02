@@ -52,7 +52,7 @@ export const postsController = {
         if (!post) {
             return res.sendStatus(404)
         }
-        return res.sendStatus(200).send(post)
+        return res.status(200).send(post)
 
     },
     deleteById(req: Request, res: Response) {

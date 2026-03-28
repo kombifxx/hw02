@@ -4,7 +4,7 @@ export const testingController = {
     deleteAll(_: Request, res: Response) {
         db.posts.length = 0;
         db.blogs.length = 0;
-        return res.status(204)
+        return res.sendStatus(204)
 
     }
 }
