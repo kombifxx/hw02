@@ -11,9 +11,9 @@ export const setupApp = (app: Express) => {
     res.status(200).send("Hello world!");
   });
 
-  app.use("/ht_02/api/blogs", BlogsRouter);
-  app.use("/ht_02/api/posts", PostsRouter);
-  app.use("/ht_02/api/testing", testingRouter);
+  app.use("/blogs", BlogsRouter);
+  app.use("/posts", PostsRouter);
+  app.use("/testing", testingRouter);
 
   return app;
 };
