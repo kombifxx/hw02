@@ -22,6 +22,7 @@ export const postsController = {
       content: data.content,
       blogId: data.blogId,
       blogName: blog.name,
+      createdAt: Date.now().toString(),
     };
     const createdPost = await postsRepo.create(newPost);
     res.status(201).send(createdPost);

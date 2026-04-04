@@ -5,6 +5,7 @@ export type Blog = {
   name: string;
   description: string;
   websiteUrl: string;
+  isMembership: boolean;
 };
 
 export type Post = {
@@ -14,6 +15,7 @@ export type Post = {
   content: string;
   blogId: string;
   blogName: string;
+  createdAt: string;
 };
 
 const uri = process.env.MONGO_URI as string;

@@ -14,6 +14,7 @@ export const blogsController = {
       name: data.name,
       description: data.description,
       websiteUrl: data.websiteUrl,
+      isMembership: data.isMembership,
     };
     const createdBlog = await blogsRepo.create(newBlog);
     res.status(201).send(createdBlog);
