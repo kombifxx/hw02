@@ -16,7 +16,7 @@ export type Post = {
   blogName: string;
 };
 
-const uri = process.env.MONGO_URL as string;
+const uri = process.env.MONGO_URI as string;
 
 if (!uri) {
   throw new Error("MONGO_URI is not defined in .env");
@@ -32,7 +32,8 @@ export const runDb = async () => {
     await client.connect();
     console.log("Connected");
   } catch (e) {
-    console.log("Failed");
-    await client.close();
+      console.error("DB connection error:", e);
+      await client.close();
+      throw e;
   }
 };
