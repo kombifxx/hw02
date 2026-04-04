@@ -1,6 +1,8 @@
 import express from "express";
 import { setupApp } from "./setup-app";
 import { runDb } from "./db/db";
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 setupApp(app);
@@ -14,5 +16,7 @@ const startApp = async () => {
         console.log(`Server started on port ${PORT}`);
     });
 };
-
-startApp();
+startApp().catch((error) => {
+    console.error("Failed to start app:", error);
+    process.exit(1);
+});

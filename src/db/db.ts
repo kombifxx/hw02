@@ -16,9 +16,13 @@ export type Post = {
   blogName: string;
 };
 
-const url = process.env.MONGO_URL as string
-console.log(url);
-const client = new MongoClient(url)
+const uri = process.env.MONGO_URL as string
+
+if (!uri) {
+    throw new Error("MONGO_URI is not defined in .env");
+}
+console.log(uri);
+const client = new MongoClient(uri)
 const db = client.db("blog-platform");
 
 export const blogsCollection = db.collection("blogs");
