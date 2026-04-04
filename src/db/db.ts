@@ -16,23 +16,23 @@ export type Post = {
   blogName: string;
 };
 
-const uri = process.env.MONGO_URL as string
+const uri = process.env.MONGO_URL as string;
 
 if (!uri) {
-    throw new Error("MONGO_URI is not defined in .env");
+  throw new Error("MONGO_URI is not defined in .env");
 }
 console.log(uri);
-const client = new MongoClient(uri)
+const client = new MongoClient(uri);
 const db = client.db("blog-platform");
 
 export const blogsCollection = db.collection("blogs");
 export const postsCollection = db.collection("posts");
 export const runDb = async () => {
-    try {
-        await client.connect();
-        console.log("Connected");
-    } catch (e) {
-        console.log("Failed");
-        await client.close();
-    }
-}
+  try {
+    await client.connect();
+    console.log("Connected");
+  } catch (e) {
+    console.log("Failed");
+    await client.close();
+  }
+};
