@@ -3,13 +3,13 @@ import { postsRepo } from "../repositories/posts.repo";
 import { blogsRepo } from "../repositories/blogs.repo";
 
 export const postsController = {
-  getAll(_: Request, res: Response) {
-    const posts = postsRepo.findAll();
+  async getAll(_: Request, res: Response) {
+    const posts = await postsRepo.findAll();
     res.status(200).send(posts);
   },
-  create(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const data = req.body;
-    const blog = blogsRepo.findById(data.blogId);
+    const blog = await blogsRepo.findById(data.blogId);
 
     if (!blog) {
       return res.status(400);
@@ -23,20 +23,20 @@ export const postsController = {
       blogId: data.blogId,
       blogName: blog.name,
     };
-    const createdPost = postsRepo.create(newPost);
+    const createdPost = await postsRepo.create(newPost);
     res.status(201).send(createdPost);
   },
-    update(req: Request, res: Response) {
+    async update(req: Request, res: Response) {
         const id = req.params.id as string
         const data = req.body
 
-        const post = postsRepo.findById(id)
+        const post = await postsRepo.findById(id)
 
         if (!post) {
             return res.sendStatus(404)
         }
 
-        const blog = blogsRepo.findById(data.blogId)
+        const blog = await blogsRepo.findById(data.blogId)
 
         if (!blog) {
             return res.sendStatus(400)
@@ -51,17 +51,17 @@ export const postsController = {
         return res.sendStatus(204)
     },
 
-  getById(req: Request, res: Response) {
+  async getById(req: Request, res: Response) {
     const id = req.params.id as string;
-    const post = postsRepo.findById(id);
+    const post = await postsRepo.findById(id);
     if (!post) {
       return res.sendStatus(404);
     }
     return res.status(200).send(post);
   },
-  deleteById(req: Request, res: Response) {
+  async deleteById(req: Request, res: Response) {
     const id = req.params.id as string;
-    const isDeleted = postsRepo.deleteById(id);
+    const isDeleted = await postsRepo.deleteById(id);
     if (!isDeleted) {
       return res.sendStatus(404);
     }

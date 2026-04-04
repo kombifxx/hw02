@@ -3,6 +3,7 @@ import { BlogsRouter } from "./routes/blogs.routes";
 import { PostsRouter } from "./routes/posts.routes";
 import { testingRouter } from "./routes/testing.routes";
 
+
 export const setupApp = (app: Express) => {
   app.use(express.json()); // middleware для парсинга JSON в теле запроса
 
