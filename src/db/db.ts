@@ -23,6 +23,7 @@ const uri = process.env.MONGO_URI as string;
 if (!uri) {
   throw new Error("MONGO_URI is not defined in .env");
 }
+
 console.log(uri);
 const client = new MongoClient(uri);
 const db = client.db("blog-platform");
