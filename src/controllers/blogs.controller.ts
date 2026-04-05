@@ -10,11 +10,11 @@ export const blogsController = {
     const data = req.body;
 
     const newBlog = {
-      id: Date.now().toString(), // пока так, потом исправлю
       name: data.name,
       description: data.description,
       websiteUrl: data.websiteUrl,
-      isMembership: data.isMembership,
+      isMembership: false,
+        createdAt: new Date().toISOString(),
     };
     const createdBlog = await blogsRepo.create(newBlog);
     res.status(201).send(createdBlog);
@@ -23,17 +23,13 @@ export const blogsController = {
     const id = req.params.id as string;
     const data = req.body;
 
-    const blog = await blogsRepo.findById(id);
+      const isUpdated = await blogsRepo.update(id, data);
 
-    if (!blog) {
-      return res.sendStatus(404);
-    }
+      if (!isUpdated) {
+          return res.sendStatus(404);
+      }
 
-    blog.name = data.name;
-    blog.description = data.description;
-    blog.websiteUrl = data.websiteUrl;
-
-    return res.sendStatus(204);
+      return res.sendStatus(204);
   },
 
   async getById(req: Request, res: Response) {
