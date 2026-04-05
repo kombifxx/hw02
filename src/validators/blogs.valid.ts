@@ -1,4 +1,4 @@
-import { body, param } from "express-validator";
+import { body } from "express-validator";
 export const blogValidation = [
   body("websiteUrl")
     .trim()
@@ -33,11 +33,4 @@ export const blogValidation = [
     .isLength({ max: 500 })
     .withMessage("Description should be less than 500 characters"),
 ];
-export const idValidation = [
-  param("id")
-    .exists()
-    .withMessage("ID cannot be empty")
-    .isString()
-    .withMessage("ID should be a string")
-    .withMessage("ID should be a number"),
-];
+

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { blogValidation, idValidation } from "../validators/blogs.valid";
+import { blogValidation } from "../validators/blogs.valid";
 import { inputValidationMiddleware } from "../middlewares/validation.middleware";
 import { blogsController } from "../controllers/blogs.controller";
 import { guardMiddleware } from "../middlewares/auth.middleware";
@@ -17,7 +17,6 @@ BlogsRouter.get("/", blogsController.getAll)
   .put(
     "/:id",
     guardMiddleware,
-    idValidation,
     blogValidation,
     inputValidationMiddleware,
     blogsController.update,
@@ -25,7 +24,6 @@ BlogsRouter.get("/", blogsController.getAll)
   .delete(
     "/:id",
     guardMiddleware,
-    idValidation,
     inputValidationMiddleware,
     blogsController.deleteById,
   );
