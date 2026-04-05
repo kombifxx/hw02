@@ -12,6 +12,7 @@ export const postsRepo = {
       content: p.content,
       blogId: p.blogId,
       blogName: p.blogName,
+        createdAt: p.createdAt,
     }));
   },
 
@@ -57,20 +58,21 @@ export const postsRepo = {
 
     return result.deletedCount === 1;
   },
-  async update(id: string, data: any) {
-    if (!ObjectId.isValid(id)) return false;
+    async update(id: string, data: any) {
+        if (!ObjectId.isValid(id)) return false;
 
-    const result = await postsCollection.updateOne(
-      { _id: new ObjectId(id) },
-      {
-        $set: {
-          name: data.name,
-          description: data.description,
-          websiteUrl: data.websiteUrl,
-        },
-      },
-    );
+        const result = await postsCollection.updateOne(
+            { _id: new ObjectId(id) },
+            {
+                $set: {
+                    title: data.title,
+                    shortDescription: data.shortDescription,
+                    content: data.content,
+                    blogId: data.blogId,
+                },
+            }
+        );
 
-    return result.matchedCount === 1;
-  },
+        return result.matchedCount === 1;
+    },
 };
