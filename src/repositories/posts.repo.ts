@@ -17,10 +17,14 @@ export const postsRepo = {
 
   async create(newPost: any) {
     const result = await postsCollection.insertOne(newPost);
-
     return {
       id: result.insertedId.toString(),
-      ...newPost,
+      title: newPost.title,
+      shortDescription: newPost.shortDescription,
+      content: newPost.content,
+      blogId: newPost.blogId,
+      blogName: newPost.blogName,
+      createdAt: newPost.createdAt,
     };
   },
 
@@ -40,6 +44,7 @@ export const postsRepo = {
       content: post.content,
       blogId: post.blogId,
       blogName: post.blogName,
+      createdAt: post.createdAt,
     };
   },
 
@@ -51,5 +56,21 @@ export const postsRepo = {
     });
 
     return result.deletedCount === 1;
+  },
+  async update(id: string, data: any) {
+    if (!ObjectId.isValid(id)) return false;
+
+    const result = await postsCollection.updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          name: data.name,
+          description: data.description,
+          websiteUrl: data.websiteUrl,
+        },
+      },
+    );
+
+    return result.matchedCount === 1;
   },
 };

@@ -16,7 +16,6 @@ export const postsController = {
     }
 
     const newPost = {
-      id: Date.now().toString(), // пока так, потом исправлю
       title: data.title,
       shortDescription: data.shortDescription,
       content: data.content,
@@ -31,23 +30,11 @@ export const postsController = {
     const id = req.params.id as string;
     const data = req.body;
 
-    const post = await postsRepo.findById(id);
+    const isUpdated = await blogsRepo.update(id, data);
 
-    if (!post) {
+    if (!isUpdated) {
       return res.sendStatus(404);
     }
-
-    const blog = await blogsRepo.findById(data.blogId);
-
-    if (!blog) {
-      return res.sendStatus(400);
-    }
-
-    post.title = data.title;
-    post.shortDescription = data.shortDescription;
-    post.content = data.content;
-    post.blogId = data.blogId;
-    post.blogName = blog.name;
 
     return res.sendStatus(204);
   },

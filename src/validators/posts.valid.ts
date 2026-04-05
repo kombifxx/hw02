@@ -1,4 +1,4 @@
-import { body, param } from "express-validator";
+import { body } from "express-validator";
 export const postValidation = [
   body("title")
     .exists()
@@ -34,13 +34,4 @@ export const postValidation = [
     .withMessage("blogId is required")
     .isString()
     .withMessage("blogId must be string"),
-];
-export const idValidation = [
-  param("id")
-    .exists()
-    .withMessage("ID cannot be empty")
-    .isString()
-    .withMessage("ID should be a string")
-    .isNumeric()
-    .withMessage("ID should be a number"),
 ];
