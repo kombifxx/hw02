@@ -33,4 +33,3 @@ export const blogValidation = [
     .isLength({ max: 500 })
     .withMessage("Description should be less than 500 characters"),
 ];
-

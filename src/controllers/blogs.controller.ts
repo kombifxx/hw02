@@ -14,7 +14,7 @@ export const blogsController = {
       description: data.description,
       websiteUrl: data.websiteUrl,
       isMembership: false,
-        createdAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     };
     const createdBlog = await blogsRepo.create(newBlog);
     res.status(201).send(createdBlog);
@@ -23,13 +23,13 @@ export const blogsController = {
     const id = req.params.id as string;
     const data = req.body;
 
-      const isUpdated = await blogsRepo.update(id, data);
+    const isUpdated = await blogsRepo.update(id, data);
 
-      if (!isUpdated) {
-          return res.sendStatus(404);
-      }
+    if (!isUpdated) {
+      return res.sendStatus(404);
+    }
 
-      return res.sendStatus(204);
+    return res.sendStatus(204);
   },
 
   async getById(req: Request, res: Response) {

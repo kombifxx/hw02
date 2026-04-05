@@ -35,8 +35,8 @@ export const runDb = async () => {
     await client.connect();
     console.log("Connected");
   } catch (e) {
-      console.error("DB connection error:", e);
-      await client.close();
-      throw e;
+    console.error("DB connection error:", e);
+    await client.close();
+    throw e;
   }
 };
