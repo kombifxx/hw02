@@ -21,7 +21,7 @@ export const postsController = {
       content: data.content,
       blogId: data.blogId,
       blogName: blog.name,
-      createdAt: Date.now().toString(),
+      createdAt: new Date().toISOString()
     };
     const createdPost = await postsRepo.create(newPost);
     res.status(201).send(createdPost);
@@ -29,9 +29,7 @@ export const postsController = {
   async update(req: Request, res: Response) {
     const id = req.params.id as string;
     const data = req.body;
-
-    const isUpdated = await blogsRepo.update(id, data);
-
+      const isUpdated = await postsRepo.update(id, data);
     if (!isUpdated) {
       return res.sendStatus(404);
     }
